@@ -8,4 +8,4 @@ class PersonAdmin(admin.ModelAdmin):
 
 @admin.register(models.Consumption)
 class ConsumptionAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('person', 'quantity', 'timestamp')
