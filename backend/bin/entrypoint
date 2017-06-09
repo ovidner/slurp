@@ -1,0 +1,4 @@
+#!/bin/sh
+# Fail on non-zero exit status
+set -e
+exec "$@"

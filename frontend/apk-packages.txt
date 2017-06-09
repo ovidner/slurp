@@ -1,0 +1,10 @@
+# This file contains the APK (Alpine) packages needed to run the application.
+
+# Runtime dependencies
+nginx
+nodejs
+yarn
+
+# Build dependencies
+# gyp (used by node-gyp, used by npm/yarn) is stuck on Python 2.
+python2

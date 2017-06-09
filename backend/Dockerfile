@@ -1,7 +1,9 @@
-FROM armhf/alpine:3.5
+FROM armhf/alpine:edge
 
-ENV APP_ROOT=/app \
-    DJANGO_SETTINGS_MODULE=slurp.settings \
+ENV APP_ROOT=/app
+ENV DJANGO_SETTINGS_MODULE=slurp.settings \
+    GUNICORN_CONFIG=${APP_ROOT}/gunicorn-conf.py \
+    PYTHONPATH=${APP_ROOT}:${PYTHONPATH} \
     PYTHONUNBUFFERED=true
 
 # Build-only environment variables
@@ -22,8 +24,8 @@ RUN pip3 install --no-cache-dir -r ${APP_ROOT}/requirements.txt
 
 COPY . ${APP_ROOT}
 
-RUN django-admin collectstatic --no-input
+# RUN django-admin collectstatic --no-input
 
 ENTRYPOINT ["/app/bin/entrypoint"]
-CMD ["/app/bin/django"]
+CMD ["/app/bin/run-django"]
 EXPOSE 80

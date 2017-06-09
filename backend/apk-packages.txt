@@ -1,0 +1,13 @@
+# This file contains the APK (Alpine) packages needed to run the application.
+
+# Runtime dependencies
+libpq
+python3
+
+# Build dependencies
+gcc
+libffi-dev
+make
+musl-dev
+postgresql-dev
+python3-dev

@@ -12,18 +12,20 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+import environ
+
+
+env = environ.Env()
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+SECRET_KEY = env.str('SECRET_KEY', 'Unsafe_development_key._Never_use_in_production.')
+DEBUG = env.bool('DEBUG_MODE', True)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@1%+%^mg0vvovh6yg7^-je+gxl5_)b1u@h1-(l9@g7!$5=c1a8'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DATABASES = {
+    'default': env.db_url('DATABASE_URL', 'sqlite:///db.sqlite3')
+}
 
 ALLOWED_HOSTS = []
 
@@ -70,18 +72,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'slurp.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

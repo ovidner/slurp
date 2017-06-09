@@ -59,9 +59,9 @@ class Person(models.Model):
 class Consumption(models.Model):
     id = IDField()
 
-    timestamp = models.DateTimeField(default=now, verbose_name=_('timestamp'))
+    timestamp = models.DateTimeField(default=now, editable=False, verbose_name=_('timestamp'))
 
-    consumer = models.ForeignKey(Person, verbose_name=_('consumer'))
+    person = models.ForeignKey(Person, verbose_name=_('person'))
     quantity = models.PositiveIntegerField(choices=QUANTITY_CHOICES, default=0, verbose_name=_('quantity'))
 
     class Meta:

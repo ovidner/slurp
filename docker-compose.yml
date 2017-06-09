@@ -1,0 +1,28 @@
+version: '3.2'
+volumes:
+  postgres-data:
+    driver: local
+
+services:
+  backend:
+    image: ovidner/slurp-backend-arm32v7:latest
+    build:
+      context: backend
+    ports:
+      - 80:80
+    environment:
+      - DATABASE_URL=postgres://slurp:slurp-pass@postgres:5432/slurp
+      - SECRET_KEY=super-duper-secret-key
+
+  frontend:
+    image: ovidner/slurp-frontend-arm32v7:latest
+    build:
+      context: frontend
+
+  postgres:
+    image: armhf/postgres:9.6-alpine
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    environment:
+      - POSTGRES_USER=slurp
+      - POSTGRES_PASSWORD=slurp-pass
