@@ -27,7 +27,7 @@ DATABASES = {
     'default': env.db_url('DATABASE_URL', 'sqlite:///db.sqlite3')
 }
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
