@@ -68,6 +68,9 @@ class Consumption(models.Model):
         verbose_name = _('consumption')
         verbose_name_plural = _('consumptions')
 
+    def __str__(self):
+        return f'{self.person.short_name}: {self.quantity} cl ({self.timestamp})'
+
 
 class User(AbstractUser):
     id = IDField()
