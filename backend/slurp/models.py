@@ -65,6 +65,7 @@ class Consumption(models.Model):
     quantity = models.PositiveIntegerField(choices=QUANTITY_CHOICES, default=0, verbose_name=_('quantity'))
 
     class Meta:
+        ordering = ('-timestamp',)
         verbose_name = _('consumption')
         verbose_name_plural = _('consumptions')
 
