@@ -8,9 +8,8 @@ class PersonSerializer(serializers.ModelSerializer):
         model = models.Person
         fields = (
             'id',
-            'first_name',
-            'last_name',
-            'nickname'
+            'full_name',
+            'short_name'
         )
 
 
